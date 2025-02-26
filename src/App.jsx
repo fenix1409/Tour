@@ -5,8 +5,9 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import SignIn from './pages/SignIn/SignIn'
 
 function App() {
-  const { token } = useContext(Context)
-  if (!token) {
+  const { authToken } = useContext(Context)
+  
+  if (!authToken) {
     return <SignIn />
   }
   else {

@@ -1,15 +1,24 @@
-import { useState } from "react";
-import React from "react";
-import { createContext } from "react";
+import { useState, useEffect } from "react"
+import React, { createContext } from "react"
 
 export const Context = createContext()
 
 export const AuthContext = ({ children }) => {
     const data = localStorage.getItem("token")
-    const [token, setToken] = useState(data ? JSON.parse(data) : null)
+    let token = null
 
-    localStorage.setItem("token", JSON.stringify(token))
+    // Tokenni olishda JSON.parse ishlatmaslik kerak, chunki token string sifatida saqlanadi
+    if (data) {
+        token = data // Token string sifatida olinadi
+    }
+    const [authToken, setAuthToken] = useState(token);
+    // Tokenni o'zgarganda faqat saqlash
+    useEffect(() => {
+        if (authToken) {
+            localStorage.setItem("token", authToken) // Tokenni saqlash
+        }
+    }, [authToken])
     return (
-        <Context.Provider value={{ token, setToken }}>{children}</Context.Provider>
+        <Context.Provider value={{ authToken, setAuthToken }}>{children}</Context.Provider>
     )
 }

@@ -3,6 +3,7 @@ import './App.css'
 import { Context } from './context/useContext'
 import Dashboard from './pages/Dashboard/Dashboard'
 import SignIn from './pages/SignIn/SignIn'
+import DashboardRoute from './routes/DashboardRoute'
 
 function App() {
   const { authToken } = useContext(Context)
@@ -11,7 +12,7 @@ function App() {
     return <SignIn />
   }
   else {
-    return <Dashboard />
+    return <DashboardRoute />
   }
 }
 

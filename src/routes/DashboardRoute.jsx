@@ -8,7 +8,7 @@ const DashboardRoute = () => {
     return (
         <div>
             <Header />
-            <div className="flex items-center justify-between">
+            <div className="flex justify-between">
                 <Navbar />
                 <div className="relative w-[80%] h-[100vh] overflow-y-auto">
                     <Routes>
